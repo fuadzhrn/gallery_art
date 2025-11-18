@@ -1,0 +1,174 @@
+/* ==========================================
+   SECTION SENI
+   ========================================== */
+.section-seni {
+    padding: 60px 40px;
+    background-color: #f5f5f5;
+}
+
+.seni-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.seni-card {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.seni-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.seni-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.seni-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #222222;
+    margin: 0;
+}
+
+.seni-arrow {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #222222;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.seni-line {
+    height: 2px;
+    background-color: #000000;
+    width: 80%;
+    margin: 12px 0 16px 0;
+}
+
+.seni-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+    height: 250px;
+}
+
+.seni-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-top: 12px;
+    color: #555555;
+    text-align: left;
+}
+
+/* ==========================================
+   RESPONSIVE - TABLET
+   ========================================== */
+@media (max-width: 900px) {
+    .section-seni {
+        padding: 50px 30px;
+    }
+
+    .seni-container {
+        gap: 30px;
+    }
+
+    .seni-card {
+        padding: 24px;
+    }
+
+    .seni-title {
+        font-size: 1.35rem;
+    }
+
+    .seni-image {
+        height: 220px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - MOBILE
+   ========================================== */
+@media (max-width: 768px) {
+    .section-seni {
+        padding: 40px 20px;
+    }
+
+    .seni-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .seni-card {
+        padding: 20px;
+    }
+
+    .seni-title {
+        font-size: 1.25rem;
+    }
+
+    .seni-image {
+        height: 200px;
+    }
+
+    .seni-desc {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - SMALL MOBILE
+   ========================================== */
+@media (max-width: 480px) {
+    .section-seni {
+        padding: 30px 15px;
+    }
+
+    .seni-container {
+        gap: 16px;
+    }
+
+    .seni-card {
+        padding: 16px;
+    }
+
+    .seni-title {
+        font-size: 1.1rem;
+    }
+
+    .seni-arrow {
+        font-size: 1.2rem;
+        width: 28px;
+        height: 28px;
+    }
+
+    .seni-image {
+        height: 180px;
+    }
+
+    .seni-desc {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+}
