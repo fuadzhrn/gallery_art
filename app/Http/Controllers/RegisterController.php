@@ -26,7 +26,6 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
-            'role' => 'required|in:seniman,admin',
             'terms' => 'required|accepted',
         ], [
             'email.unique' => 'Email ini sudah terdaftar.',
@@ -36,12 +35,12 @@ class RegisterController extends Controller
             'password.min' => 'Password minimal harus 6 karakter.',
         ]);
 
-        // Buat user baru
+        // Buat user baru dengan role otomatis 'seniman'
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => $validated['role'],
+            'role' => 'seniman', // Selalu otomatis jadi seniman
         ]);
 
         // Redirect ke login dengan pesan sukses

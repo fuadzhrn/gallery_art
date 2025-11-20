@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relasi ke Karya Seni
+     */
+    public function karya()
+    {
+        return $this->hasMany(Karya::class);
+    }
 }

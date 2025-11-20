@@ -26,7 +26,6 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
-            'role' => 'required|in:seniman,admin',
         ]);
 
         // Cari user berdasarkan email
@@ -39,17 +38,10 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
 
-        // Validasi role user
-        if ($user->role !== $credentials['role']) {
-            return back()->withErrors([
-                'role' => 'Role tidak sesuai dengan akun Anda.',
-            ])->onlyInput('email');
-        }
-
         // Login user
         Auth::login($user);
 
-        // Redirect berdasarkan role
+        // Redirect berdasarkan role user di database
         if ($user->role === 'seniman') {
             return redirect('/dashboard-seniman')->with('success', 'Selamat datang, Seniman!');
         } else if ($user->role === 'admin') {

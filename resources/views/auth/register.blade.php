@@ -94,39 +94,6 @@
             display: block;
         }
 
-        .role-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .role-option {
-            flex: 1;
-        }
-
-        .role-option input[type="radio"] {
-            display: none;
-        }
-
-        .role-option label {
-            display: block;
-            padding: 10px;
-            border: 2px solid #E0E0E0;
-            border-radius: 6px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 0;
-            font-size: 13px;
-        }
-
-        .role-option input[type="radio"]:checked + label {
-            border-color: #F3EE62;
-            background: #F3EE62;
-            color: #1C1C1C;
-            font-weight: 600;
-        }
-
         .btn-register {
             width: 100%;
             padding: 12px;
@@ -297,35 +264,8 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label style="display: block; margin-bottom: 10px;">Daftar Sebagai:</label>
-                <div class="role-group">
-                    <div class="role-option">
-                        <input 
-                            type="radio" 
-                            id="role_seniman" 
-                            name="role" 
-                            value="seniman"
-                            {{ old('role') === 'seniman' ? 'checked' : '' }}
-                            required
-                        >
-                        <label for="role_seniman">Seniman</label>
-                    </div>
-                    <div class="role-option">
-                        <input 
-                            type="radio" 
-                            id="role_admin" 
-                            name="role" 
-                            value="admin"
-                            {{ old('role') === 'admin' ? 'checked' : '' }}
-                            required
-                        >
-                        <label for="role_admin">Admin</label>
-                    </div>
-                </div>
-                @error('role')
-                    <span class="error-message">{{ $message }}</span>
-                @enderror
+            <div class="alert alert-info" style="background: #E3F2FD; color: #1565C0; border-left: 4px solid #1976D2; padding: 12px 14px; border-radius: 6px; margin-bottom: 16px; font-size: 13px;">
+                <i class="ri-information-line"></i> Anda akan mendaftar sebagai <strong>Seniman</strong>. Untuk role Admin, hubungi administrator.
             </div>
 
             <div class="terms-checkbox">

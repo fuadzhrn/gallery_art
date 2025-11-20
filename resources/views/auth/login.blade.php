@@ -94,38 +94,6 @@
             display: block;
         }
 
-        .role-group {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .role-option {
-            flex: 1;
-        }
-
-        .role-option input[type="radio"] {
-            display: none;
-        }
-
-        .role-option label {
-            display: block;
-            padding: 12px;
-            border: 2px solid #E0E0E0;
-            border-radius: 6px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 0;
-        }
-
-        .role-option input[type="radio"]:checked + label {
-            border-color: #F3EE62;
-            background: #F3EE62;
-            color: #1C1C1C;
-            font-weight: 600;
-        }
-
         .btn-login {
             width: 100%;
             padding: 12px;
@@ -148,7 +116,7 @@
 
         .login-footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 16px;
             font-size: 13px;
             color: #666;
         }
@@ -272,35 +240,6 @@
                     required
                 >
                 @error('password')
-                    <span class="error-message">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label style="display: block; margin-bottom: 12px;">Pilih Role:</label>
-                <div class="role-group">
-                    <div class="role-option">
-                        <input 
-                            type="radio" 
-                            id="role_seniman" 
-                            name="role" 
-                            value="seniman"
-                            {{ old('role') === 'seniman' ? 'checked' : '' }}
-                        >
-                        <label for="role_seniman">Seniman</label>
-                    </div>
-                    <div class="role-option">
-                        <input 
-                            type="radio" 
-                            id="role_admin" 
-                            name="role" 
-                            value="admin"
-                            {{ old('role') === 'admin' ? 'checked' : '' }}
-                        >
-                        <label for="role_admin">Admin</label>
-                    </div>
-                </div>
-                @error('role')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
