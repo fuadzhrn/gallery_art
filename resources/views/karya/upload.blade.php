@@ -38,7 +38,34 @@
 
         .upload-header {
             margin-bottom: 30px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #F0F0F0;
+            color: #1C1C1C;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background: #E0E0E0;
+            transform: translateX(-4px);
+        }
+
+        .upload-header-content {
+            flex: 1;
         }
 
         .upload-header h1 {
@@ -66,24 +93,43 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px 14px;
             border: 1px solid #E0E0E0;
             border-radius: 6px;
             font-size: 14px;
             font-family: 'Montserrat', sans-serif;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231C1C1C' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .form-group select:hover {
+            border-color: #F3EE62;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #F3EE62;
             box-shadow: 0 0 0 3px rgba(243, 238, 98, 0.1);
         }
 
         .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }        .form-group textarea {
             resize: vertical;
             min-height: 120px;
         }
@@ -226,8 +272,13 @@
     <div class="container">
         <div class="upload-card">
             <div class="upload-header">
-                <h1>Upload Karya Seni</h1>
-                <p>Bagikan karya terbaik Anda ke komunitas SumbawaArt</p>
+                <a href="{{ route('dashboard-seniman') }}" class="btn-back" title="Kembali">
+                    <i class="ri-arrow-left-line"></i>
+                </a>
+                <div class="upload-header-content">
+                    <h1>Upload Karya</h1>
+                    <p>Bagikan karya seni Anda</p>
+                </div>
             </div>
 
             @if ($errors->any())
@@ -246,28 +297,49 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="judul">Judul Karya <span style="color: #E53935;">*</span></label>
+                    <label for="nama">Nama Karya <span style="color: #E53935;">*</span></label>
                     <input 
                         type="text" 
-                        id="judul" 
-                        name="judul" 
-                        placeholder="Masukkan judul karya Anda"
-                        value="{{ old('judul') }}"
+                        id="nama" 
+                        name="nama" 
+                        placeholder="Masukkan nama karya"
+                        value="{{ old('nama') }}"
                         required
                     >
-                    @error('judul')
+                    @error('nama')
                         <span class="error-message">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
+                    <label for="jenis">Jenis Karya <span style="color: #E53935;">*</span></label>
+                    <select id="jenis" name="jenis" required>
+                        <option value="">-- Pilih Jenis --</option>
+                        <option value="budaya" {{ old('jenis') == 'budaya' ? 'selected' : '' }}>Seni Budaya</option>
+                        <option value="tari" {{ old('jenis') == 'tari' ? 'selected' : '' }}>Seni Tari</option>
+                        <option value="teater" {{ old('jenis') == 'teater' ? 'selected' : '' }}>Seni Teater</option>
+                    </select>
+                    @error('jenis')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi Karya</label>
                     <textarea 
                         id="deskripsi" 
                         name="deskripsi" 
                         placeholder="Ceritakan tentang karya Anda (opsional)"
+                        maxlength="1000"
                     >{{ old('deskripsi') }}</textarea>
+                    <div style="font-size: 12px; color: #999; margin-top: 6px;">
+                        <span id="charCount">0</span>/1000 karakter
+                    </div>
                     @error('deskripsi')
+                        <span class="error-message">{{ $message }}</span>
+                    @enderror
+                </div>
+                    @error('jenis')
                         <span class="error-message">{{ $message }}</span>
                     @enderror
                 </div>
@@ -297,9 +369,9 @@
 
                 <div class="button-group">
                     <button type="submit" class="btn btn-submit">
-                        <i class="ri-upload-cloud-2-line"></i> Upload Karya
+                        <i class="ri-upload-cloud-2-line"></i> Upload
                     </button>
-                    <a href="{{ route('karya.seniman') }}" class="btn btn-cancel">
+                    <a href="{{ route('dashboard-seniman') }}" class="btn btn-cancel">
                         Batal
                     </a>
                 </div>
@@ -326,6 +398,14 @@
                 };
                 reader.readAsDataURL(file);
             }
+        });
+
+        // Character counter untuk deskripsi
+        const deskripsiInput = document.getElementById('deskripsi');
+        const charCount = document.getElementById('charCount');
+        
+        deskripsiInput.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
         });
 
         // Drag and drop

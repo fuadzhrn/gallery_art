@@ -32,11 +32,13 @@ class KaryaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
+            'nama' => 'required|string|max:255',
+            'jenis' => 'required|in:budaya,tari,teater',
+            'deskripsi' => 'nullable|string|max:1000',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // max 5MB
         ], [
-            'judul.required' => 'Judul karya harus diisi.',
+            'nama.required' => 'Nama karya harus diisi.',
+            'jenis.required' => 'Jenis karya harus dipilih.',
             'gambar.required' => 'Gambar karya harus diupload.',
             'gambar.image' => 'File harus berupa gambar.',
             'gambar.max' => 'Ukuran gambar maksimal 5MB.',
@@ -49,13 +51,14 @@ class KaryaController extends Controller
         // Buat karya
         Karya::create([
             'user_id' => Auth::id(),
-            'judul' => $validated['judul'],
-            'deskripsi' => $validated['deskripsi'],
+            'nama' => $validated['nama'],
+            'jenis' => $validated['jenis'],
+            'deskripsi' => $validated['deskripsi'] ?? null,
             'gambar' => $path,
             'status' => 'pending',
         ]);
 
-        return redirect()->route('karya.seniman')
+        return redirect()->route('dashboard-seniman')
             ->with('success', 'Karya berhasil diupload! Menunggu verifikasi admin.');
     }
 
@@ -87,6 +90,7 @@ class KaryaController extends Controller
     public function indexAdmin(Request $request)
     {
         $status = $request->query('status');
+        $jenis = $request->query('jenis');
         
         $query = Karya::with('user')->orderBy('created_at', 'desc');
         
@@ -94,9 +98,13 @@ class KaryaController extends Controller
             $query->where('status', $status);
         }
         
-        $karya = $query->get();
+        if ($jenis) {
+            $query->where('jenis', $jenis);
+        }
         
-        return view('dashboard.admin-karya', compact('karya', 'status'));
+        $allKarya = $query->get();
+        
+        return view('dashboard.admin-karya', compact('allKarya', 'status', 'jenis'));
     }
 
     /**
@@ -104,20 +112,33 @@ class KaryaController extends Controller
      */
     public function updateStatus(Request $request, $id)
     {
+        $status = $request->input('status');
+        $feedback = $request->input('feedback');
+
         $validated = $request->validate([
-            'status' => 'required|in:draft,pending,approved,rejected',
+            'status' => 'required|in:tolak,revisi,terima',
+            'feedback' => 'nullable|string|max:1000',
         ]);
 
+        // Jika status revisi, feedback harus ada
+        if ($validated['status'] === 'revisi' && !$feedback) {
+            return back()->withErrors(['feedback' => 'Masukan revisi harus diisi untuk status revisi.']);
+        }
+
         $karya = Karya::findOrFail($id);
-        $karya->update($validated);
+        
+        $karya->update([
+            'status' => $validated['status'],
+            'feedback' => $feedback,
+        ]);
 
         $statusLabel = [
-            'approved' => 'Disetujui',
-            'rejected' => 'Ditolak',
-            'pending' => 'Menunggu',
-            'draft' => 'Draft',
+            'terima' => 'Diterima',
+            'tolak' => 'Ditolak',
+            'revisi' => 'Revisi',
         ];
 
-        return back()->with('success', "Karya '{$karya->judul}' telah {$statusLabel[$validated['status']]}.");
+        return back()->with('success', "Karya '{$karya->nama}' telah {$statusLabel[$validated['status']]}.");
     }
 }
+

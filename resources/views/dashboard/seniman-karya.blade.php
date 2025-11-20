@@ -26,6 +26,7 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
+            margin-bottom: 30px;
         }
 
         .page-header {
@@ -35,6 +36,33 @@
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 15px;
+        }
+
+        .page-header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #F0F0F0;
+            color: #1C1C1C;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background: #E0E0E0;
+            transform: translateX(-4px);
         }
 
         .page-header h1 {
@@ -63,33 +91,135 @@
             box-shadow: 0 5px 20px rgba(243, 238, 98, 0.3);
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+        .success-message {
+            background: #D4EDDA;
+            color: #155724;
+            padding: 12px 14px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28A745;
         }
 
-        .stat-card {
+        .table-wrapper {
             background: white;
-            padding: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #F9F9F9;
+            border-bottom: 2px solid #E0E0E0;
+        }
+
+        th {
+            padding: 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 13px;
+        }
+
+        tbody tr:hover {
+            background: #FAFAFA;
+        }
+
+        .img-thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
             border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #F3EE62 0%, #E8D5C4 100%);
+            border: 2px solid #F3EE62;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .stat-card .number {
-            font-size: 28px;
-            font-weight: 700;
-            color: #F3EE62;
+        .img-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(243, 238, 98, 0.3);
+            border-color: #E8D5C4;
         }
 
-        .stat-card .label {
+        .img-placeholder {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F3EE62 0%, #E8D5C4 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1C1C1C;
+            font-size: 32px;
+            border: 2px solid #F3EE62;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .img-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(243, 238, 98, 0.3);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-terima {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-tolak {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .status-revisi {
+            background: #D1ECF1;
+            color: #0C5460;
+        }
+
+        .feedback-text {
             font-size: 12px;
             color: #666;
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .jenis-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #E3F2FD;
+            color: #1565C0;
         }
 
         .empty-state {
@@ -137,145 +267,23 @@
             box-shadow: 0 5px 20px rgba(243, 238, 98, 0.3);
         }
 
-        .karya-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 24px;
-            margin-bottom: 30px;
-        }
-
-        .karya-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .karya-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .karya-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #E0E0E0;
-        }
-
-        .karya-content {
-            padding: 16px;
-        }
-
-        .karya-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .karya-desc {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.4;
-            margin-bottom: 12px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .karya-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #E0E0E0;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-pending {
-            background: #FFF3CD;
-            color: #856404;
-        }
-
-        .status-approved {
-            background: #D4EDDA;
-            color: #155724;
-        }
-
-        .status-rejected {
-            background: #F8D7DA;
-            color: #721C24;
-        }
-
-        .status-draft {
-            background: #E2E3E5;
-            color: #383D41;
-        }
-
-        .karya-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .btn-action {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .btn-view {
-            background: #E3F2FD;
-            color: #1565C0;
-        }
-
-        .btn-view:hover {
-            background: #BBDEFB;
-        }
-
-        .btn-delete {
-            background: #FFEBEE;
-            color: #C62828;
-        }
-
-        .btn-delete:hover {
-            background: #FFCDD2;
-        }
-
         @media (max-width: 768px) {
             .page-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .karya-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 16px;
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+
+            .img-thumbnail, .img-placeholder {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -283,72 +291,97 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>Karya Saya</h1>
+            <div class="page-header-content">
+                <a href="{{ route('dashboard-seniman') }}" class="btn-back" title="Kembali ke Dashboard">
+                    <i class="ri-arrow-left-line"></i>
+                </a>
+                <h1>Karya Saya</h1>
+            </div>
             <a href="{{ route('karya.create') }}" class="btn-upload">
                 <i class="ri-upload-cloud-2-line"></i> Upload Karya
             </a>
         </div>
 
-        @if ($karya->count() > 0)
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="number">{{ $karya->count() }}</div>
-                    <div class="label">Total Karya</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">{{ $karya->where('status', 'approved')->count() }}</div>
-                    <div class="label">Disetujui</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">{{ $karya->where('status', 'pending')->count() }}</div>
-                    <div class="label">Menunggu</div>
-                </div>
-                <div class="stat-card">
-                    <div class="number">{{ $karya->where('status', 'rejected')->count() }}</div>
-                    <div class="label">Ditolak</div>
-                </div>
+        @if (session('success'))
+            <div class="success-message">
+                {{ session('success') }}
             </div>
+        @endif
 
-            <div class="karya-grid">
-                @foreach ($karya as $item)
-                    <div class="karya-card">
-                        @if ($item->gambar && file_exists(storage_path('app/public/' . $item->gambar)))
-                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul }}" class="karya-image">
-                        @else
-                            <div class="karya-image" style="display: flex; align-items: center; justify-content: center; background: #E0E0E0;">
-                                <i class="ri-image-line" style="font-size: 40px; color: #999;"></i>
-                            </div>
-                        @endif
-                        
-                        <div class="karya-content">
-                            <h3 class="karya-title">{{ $item->judul }}</h3>
-                            
-                            @if ($item->deskripsi)
-                                <p class="karya-desc">{{ $item->deskripsi }}</p>
-                            @endif
-                            
-                            <div class="karya-footer">
-                                <span>{{ $item->created_at->format('d M Y') }}</span>
-                                <span class="status-badge status-{{ $item->status }}">
-                                    {{ ucfirst($item->status) }}
-                                </span>
-                            </div>
-                            
-                            <div class="karya-actions">
-                                <button class="btn-action btn-view" onclick="viewDetail('{{ $item->id }}')">
-                                    <i class="ri-eye-line"></i> Lihat
-                                </button>
-                                <form action="{{ route('karya.destroy', $item->id) }}" method="POST" style="flex: 1;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-action btn-delete" onclick="return confirm('Yakin ingin menghapus karya ini?')" style="width: 100%;">
-                                        <i class="ri-delete-bin-line"></i> Hapus
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+        @if ($karya->count() > 0)
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 8%;">Gambar</th>
+                            <th style="width: 20%;">Nama Karya</th>
+                            <th style="width: 12%;">Jenis</th>
+                            <th style="width: 15%;">Tanggal Upload</th>
+                            <th style="width: 15%;">Status</th>
+                            <th style="width: 30%;">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($karya as $item)
+                            <tr>
+                                <td>
+                                    @if ($item->gambar)
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" class="img-thumbnail" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                        <div class="img-placeholder" style="display: none;">
+                                            <i class="ri-image-line"></i>
+                                        </div>
+                                    @else
+                                        <div class="img-placeholder">
+                                            <i class="ri-image-line"></i>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <strong>{{ $item->nama }}</strong>
+                                    @if ($item->deskripsi)
+                                        <div style="font-size: 12px; color: #666; margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                            {{ $item->deskripsi }}
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="jenis-badge">
+                                        @if ($item->jenis === 'budaya')
+                                            Budaya
+                                        @elseif ($item->jenis === 'tari')
+                                            Tari
+                                        @else
+                                            Teater
+                                        @endif
+                                    </span>
+                                </td>
+                                <td>{{ $item->created_at->format('d M Y') }}</td>
+                                <td>
+                                    <span class="status-badge status-{{ $item->status }}">
+                                        @if ($item->status === 'pending')
+                                            Menunggu
+                                        @elseif ($item->status === 'terima')
+                                            Diterima
+                                        @elseif ($item->status === 'tolak')
+                                            Ditolak
+                                        @else
+                                            Revisi
+                                        @endif
+                                    </span>
+                                </td>
+                                <td>
+                                    @if ($item->feedback)
+                                        <div class="feedback-text">
+                                            <strong>Masukan:</strong> {{ $item->feedback }}
+                                        </div>
+                                    @else
+                                        <span style="color: #999; font-size: 12px;">-</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         @else
             <div class="empty-state">
@@ -356,19 +389,12 @@
                     <i class="ri-image-add-line"></i>
                 </div>
                 <h2>Belum Ada Karya</h2>
-                <p>Anda belum mengupload karya seni apapun. Mulai bagikan karya terbaik Anda!</p>
+                <p>Anda belum mengupload karya apapun. Mulai bagikan karya Anda sekarang!</p>
                 <a href="{{ route('karya.create') }}" class="btn-empty">
-                    <i class="ri-upload-cloud-2-line"></i> Upload Karya Pertama
+                    <i class="ri-upload-cloud-2-line"></i> Upload Karya
                 </a>
             </div>
         @endif
     </div>
-
-    <script>
-        function viewDetail(id) {
-            // TODO: Implement detail view modal or page
-            alert('Detail view akan segera tersedia!');
-        }
-    </script>
 </body>
 </html>

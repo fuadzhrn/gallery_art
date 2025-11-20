@@ -13,10 +13,12 @@ class Karya extends Model
 
     protected $fillable = [
         'user_id',
-        'judul',
+        'nama',
+        'jenis',
         'deskripsi',
         'gambar',
         'status',
+        'feedback',
     ];
 
     /**

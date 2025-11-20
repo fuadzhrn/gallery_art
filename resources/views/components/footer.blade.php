@@ -23,10 +23,10 @@
       <p class="footer-heading-center">Tentang Program</p>
       </div>
     <div class="footer-nav">
-        <a href="#" class="footer-link">Home</a>
-        <a href="#" class="footer-link">About</a>
-        <a href="#" class="footer-link">Gallery</a>
-        <a href="#" class="footer-link">Login</a>
+        <a href="{{ route('home') }}" class="footer-link">Home</a>
+        <a href="#about" class="footer-link">About</a>
+        <a href="#gallery" class="footer-link">Gallery</a>
+        <a href="{{ route('login') }}" class="footer-link">Login</a>
     
   </div>
       

@@ -21,11 +21,11 @@
         <!-- Navbar -->
         <nav id="navbar">
             <div class="navbar-container">
-                <a href="/" class="logo">SumbawaArt</a>
+                <a href="{{ route('home') }}" class="logo">SumbawaArt</a>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Galery</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                     <li><a href="{{ route('login') }}" class="btn-login-nav">Login</a></li>
                 </ul>
             </div>
@@ -43,10 +43,14 @@
     @include('components.section-seni')
 
     <!-- Section About -->
-    @include('components.about-section')
+    <section id="about">
+        @include('components.about-section')
+    </section>
 
     <!-- Section Gallery -->
-    @include('components.gallery-section')
+    <section id="gallery">
+        @include('components.gallery-section')
+    </section>
 
     @include('components.footer')
 

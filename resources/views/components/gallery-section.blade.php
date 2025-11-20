@@ -3,10 +3,10 @@
     <!-- Gallery Header -->
     <div class="gallery-header">
       <h2 class="gallery-title">Gallery</h2>
-      <div class="gallery-view-all">
+      <a href="{{ route('gallery') }}" class="gallery-view-all" style="text-decoration: none; cursor: pointer;">
         <span class="view-text">View all gallery</span>
-        <button class="view-arrow">→</button>
-      </div>
+        <button class="view-arrow" type="button">→</button>
+      </a>
     </div>
 
     <!-- Gallery Line -->
@@ -80,7 +80,7 @@
 
     <!-- Gallery Footer -->
     <div class="gallery-footer">
-      <button class="btn-share">Share Your Creation</button>
+      <a href="{{ route('login') }}" class="btn-share" style="text-decoration: none; display: inline-block;">Share Your Creation</a>
     </div>
   </div>
 </section>

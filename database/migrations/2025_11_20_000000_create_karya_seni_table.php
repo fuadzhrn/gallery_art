@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('karya_seni', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('judul');
+            $table->string('nama');
+            $table->enum('jenis', ['budaya', 'tari', 'teater']);
             $table->text('deskripsi')->nullable();
             $table->string('gambar');
-            $table->enum('status', ['draft', 'pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'revisi', 'tolak', 'terima'])->default('pending');
+            $table->text('feedback')->nullable();
             $table->timestamps();
         });
     }

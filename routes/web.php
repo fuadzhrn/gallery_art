@@ -3,12 +3,15 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KaryaController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 // Auth routes
 Route::middleware('guest')->group(function () {

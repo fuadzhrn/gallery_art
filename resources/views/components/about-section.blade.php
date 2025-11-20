@@ -17,7 +17,7 @@
 
       <div class="about-buttons">
         <button class="about-btn" id="btn-read-more">Read More</button>
-        <button class="about-btn">Upload</button>
+        <a href="{{ route('login') }}" class="about-btn" style="text-decoration: none; display: inline-block;">Upload</a>
       </div>
     </div>
 
